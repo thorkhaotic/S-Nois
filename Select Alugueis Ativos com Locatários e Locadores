@@ -1,0 +1,20 @@
+use fantastiko_xxx;
+select i.endereco as 'Logradouro', i.numero as 'Número',
+i.complemento as 'Complemento', i.bairro as 'Bairro',
+i.cidade as 'Cidade', i.estado as 'UF', i.cep,
+p.nome as 'Nome Proprietario', p.cnpj_cpf as 'CPF Proprietario',
+p.email as 'E-mail Proprietário', p.celular as 'Celular Proprietario',
+c.nome as 'Nome Inquilino', c.cnpj_cpf as 'CPF Inquilino',
+c.email as 'E-mail inquilino', c.celular as 'Celular Inquilino',
+i.codigo, a.dataContrato as 'Data Início Contrato',
+a.valorAluguel as 'Valor Disponível', c.telefone1 as 'Outro contato Inquilino 1',
+c.telefone2 as 'Outro contato inquilino 2', p.telefone1 as 'Outros contatos Proprietario 1',
+p.telefone2 as 'Outros contatos Proprietario 2' from aluguel a
+inner join imovel i
+on a.imovel=i.codigo
+inner join pessoa p
+on i.proprietario=p.codigo
+inner join cliente c
+on a.cliente=c.codigo
+where a.situacao='1';
+ 
